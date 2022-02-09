@@ -1,5 +1,7 @@
 name: Backup Routine
 on:
+  repository_dispatch:
+    types: backup
   schedule:
     # Runs at 04:00 UTC on the 1st and 17th of every month
     - cron: "0 4 */16 * *"
