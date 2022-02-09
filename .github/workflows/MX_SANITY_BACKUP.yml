@@ -31,4 +31,3 @@ jobs:
           DROPBOX_DESTINATION_PATH_PREFIX: "/backups_sanity"
           GLOB: /
           DEBUG: true   
-          PATH: ${{ github }}
