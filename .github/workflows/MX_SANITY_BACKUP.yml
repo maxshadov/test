@@ -29,5 +29,5 @@ jobs:
         with:
           DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
           DROPBOX_DESTINATION_PATH_PREFIX: "/backups_sanity"
-          GLOB: "/github/workspace/backups/backup.tar.gz"
+          GLOB: "./github/workspace/backups/backup.tar.gz"
           DEBUG: false   
