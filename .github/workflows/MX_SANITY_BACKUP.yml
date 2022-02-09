@@ -24,3 +24,10 @@ jobs:
           path: backups/backup.tar.gz
           # Fails the workflow if no files are found; defaults to 'warn'
           if-no-files-found: error
+      - name: Execute my action
+        uses: ./ # Uses an action in the root directory
+        with:
+          DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+          DROPBOX_DESTINATION_PATH_PREFIX: "/backups_sanity"
+          GLOB: "sample/**/*.md"
+          DEBUG: false   
