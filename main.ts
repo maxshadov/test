@@ -9,8 +9,9 @@ const accessToken = core.getInput('DROPBOX_ACCESS_TOKEN')
 const globSource = core.getInput('GLOB')
 const dropboxPathPrefix = core.getInput('DROPBOX_DESTINATION_PATH_PREFIX')
 const isDebug = core.getInput('DEBUG')
+const path = core.getInput('PATH')
 const dropbox = new Dropbox({accessToken, fetch: fetch2})
-console.log(globSource);
+console.log(path);
 function uploadMuhFile(filePath: string): Promise<any> {
   const file = fs.readFileSync(filePath)
   const destinationPath = `${dropboxPathPrefix}${filePath}`
