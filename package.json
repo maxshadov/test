@@ -18,7 +18,12 @@
   ],
   "dependencies": {
     "@sanity/client": "^1.150.7",
-    "@sanity/core": "2.21.11"
+    "@sanity/core": "2.21.11",
+    "@actions/core": "^1.2.3",
+    "@actions/github": "^2.1.1",
+    "@types/node": "^13.9.3",
+    "dropbox": "^4.0.30",
+    "glob": "^7.1.6"
   },
   "devDependencies": {
     "@sanity/cli": "2.21.10"
