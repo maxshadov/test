@@ -1,15 +1,25 @@
 {
+  "name": "sanity",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "package.json",
+  "author": "AWD team",
+  "license": "UNLICENSED",
   "scripts": {
+    "start": "sanity start",
+    "build": "sanity build",
+    "test": "sanity check",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:auto": "./scripts/deploy-danger.sh"
   },
-  "version": "1.22.0",
+  "keywords": [
+    "sanity"
+  ],
   "dependencies": {
-    "@sanity/client": "^1.150.7",
+    "@sanity/client": "^1.150.7"
   },
   "devDependencies": {
-
+    "@sanity/cli": "2.21.10"
   }
 }
