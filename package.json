@@ -17,7 +17,8 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/client": "^1.150.7"
+    "@sanity/client": "^1.150.7",
+    "@sanity/core": "2.21.11"
   },
   "devDependencies": {
     "@sanity/cli": "2.21.10"
