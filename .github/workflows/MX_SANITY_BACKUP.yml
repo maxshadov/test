@@ -18,8 +18,7 @@ jobs:
          with:
            args: dataset export production backup.tar.gz
        - name: build
-         run: |
-           yarn
+         run: yarn
 #       - name: Upload backup.tar.gz
 #         uses: actions/upload-artifact@v2
 #         with:
