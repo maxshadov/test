@@ -39,22 +39,22 @@ axios
     })
     .then(res => {
         console.log(res.data.artifacts[0].archive_download_url)
-        let blob;
+        let file;
         axios({
             url: res.data.artifacts[0].archive_download_url,
             method: 'GET',
-            responseType: 'blob',
+            responseType: 'stream',
             headers: {
                 'Authorization': `Bearer ${key}`
             }
         }).then((response) => {
-            blob = response.data;
+            file = response.data.pipe(fs.createWriteStream("back.zip"));
         }).then(() => {
             const destinationPath = `${dropboxPathPrefix}.zip`;
             if (isDebug)
                 console.log('uploaded file to Dropbox at: ', destinationPath);
             return dropbox
-                .filesUpload({path: destinationPath, contents: new File([blob], "name")})
+                .filesUpload({path: destinationPath, contents: file})
                 .then(response => {
                     if (isDebug)
                         console.log(response);
