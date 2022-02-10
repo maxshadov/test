@@ -13,24 +13,23 @@ jobs:
       - uses: actions/checkout@v2
       - name: build
         run: yarn
-#       - name: Export dataset
-#         uses: sanity-io/github-action-sanity@v0.2-alpha
-#         env:
-#           SANITY_AUTH_TOKEN: skxOCVQxCqJ1qQLSYU4dbKHRfTffifqVMygaqHxAG8FE7TujMAvCoGDCYYHWWxUBn7CzM51oY6heRLzb8P3pkCq9bPZSs6q0f6qZPRLaVtq92TYdJhIj8hNpUGpRRmwqV0EB50HhD8Gv9FpiVyYkcWph2yVmOcqfWcNGoQ9LMYbk2TZPy0Sa
-#         with:
-#           args: dataset export production backup.tar.gz
-#       - name: Upload backup.tar.gz
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: backup-tarball
-#           path: backups/backup.tar.gz
-#           # Fails the workflow if no files are found; defaults to 'warn'
-#           if-no-files-found: error
+       - name: Export dataset
+         uses: sanity-io/github-action-sanity@v0.2-alpha
+         env:
+           SANITY_AUTH_TOKEN: skxOCVQxCqJ1qQLSYU4dbKHRfTffifqVMygaqHxAG8FE7TujMAvCoGDCYYHWWxUBn7CzM51oY6heRLzb8P3pkCq9bPZSs6q0f6qZPRLaVtq92TYdJhIj8hNpUGpRRmwqV0EB50HhD8Gv9FpiVyYkcWph2yVmOcqfWcNGoQ9LMYbk2TZPy0Sa
+         with:
+           args: dataset export production backup.tar.gz
+       - name: Upload backup.tar.gz
+         uses: actions/upload-artifact@v2
+         with:
+           name: backup-tarball
+           path: backups/backup.tar.gz
+           # Fails the workflow if no files are found; defaults to 'warn'
+           if-no-files-found: error
       - name: Upload backup to Dropbox
         uses: ./
         with:
           DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
-          DROPBOX_DESTINATION_PATH_PREFIX: "/backups_sanity"
-          GLOB: "sample/**/*.md"
+          DROPBOX_DESTINATION_PATH_PREFIX: "ES-MX"
           DEBUG: true
           GIT_KEY: ${{ secrets.GIT_KEY }}

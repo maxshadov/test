@@ -24,8 +24,8 @@
     "@types/node": "^13.9.3",
     "axios": "0.25.0",
     "dropbox": "10.24.0",
-    "dropbox-v2-api": "2.4.53",
-    "glob": "7.2.0"
+    "glob": "7.2.0",
+    "node-fetch": "3.2.0"
   },
   "devDependencies": {
     "@sanity/cli": "2.27.0"
