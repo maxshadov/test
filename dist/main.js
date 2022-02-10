@@ -52,14 +52,13 @@ axios
                 'Authorization': `Bearer ${key}`
             }
         }).then(blob => {
-            console.log(new Blob([blob.data]));
             const date = new Date();
             const suff = `${date.getDate()}-${date.getMonth()}`
             const destinationPath = `/Sanity${dropboxPathPrefix}-${suff}.zip`;
             if (isDebug)
                 console.log('uploaded file to Dropbox at: ', destinationPath);
             return dropbox
-                .filesUpload({path: destinationPath, contents: new Blob([blob.data]), mode: 'overwrite'})
+                .filesUpload({path: destinationPath, contents: new File([blob.data], "file_name", {lastModified: 1534584790000})})
                 .then(response => {
                     if (isDebug)
                         console.log(response);
