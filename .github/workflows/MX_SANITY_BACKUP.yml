@@ -20,7 +20,7 @@ jobs:
       - name: Upload backup.tar.gz
         uses: actions/upload-artifact@v2
         with:
-          name: MX_SANITY_BACKUP
+          name: backup-tarball
           path: backups/backup.tar.gz
           # Fails the workflow if no files are found; defaults to 'warn'
           if-no-files-found: error
