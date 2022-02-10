@@ -1,6 +1,7 @@
 "use strict";
 const Dropbox = require('dropbox').Dropbox;
 const fs = require('fs');
+const axios = require('axios');
 const fetch2 = require('node-fetch');
 const core = require('@actions/core');
 const github = require('@actions/github');
