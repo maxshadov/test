@@ -57,7 +57,7 @@ axios
                     'close': false
                 }
             }, (err, result, response) => {
-                //see docs for `result` parameters
+                console.log(err);
             });
 
             fs.createReadStream(file).pipe(stream);
