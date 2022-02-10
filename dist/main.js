@@ -41,49 +41,46 @@ axios
         }
     })
     .then(res => {
-        dropbox({
-            resource: 'files/upload',
-            parameters: {
-                headers: {
-                    'Authorization': `Bearer ${key}`
-                },
-                path: res.data.artifacts[0].archive_download_url
-            },
-            readStream: fs.createReadStream('fileName.js')
-        }, (err, result, response) => {
-            //upload completed
-        });
-        // console.log(res.data.artifacts[0].archive_download_url)
-        // let file;
-        // axios({
-        //     url: res.data.artifacts[0].archive_download_url,
-        //     method: 'GET',
-        //     responseType: 'stream',
-        //     headers: {
-        //         'Authorization': `Bearer ${key}`
-        //     }
+        let file;
+        axios({
+            url: res.data.artifacts[0].archive_download_url,
+            method: 'GET',
+            responseType: 'stream',
+            headers: {
+                'Authorization': `Bearer ${key}`
+            }
+        }).then((response) => {
+            file = response.data.pipe(fs.createWriteStream("back.zip"));
+            const stream = dropbox({
+                resource: 'files/upload_session/start',
+                parameters: {
+                    'close': false
+                }
+            }, (err, result, response) => {
+                //see docs for `result` parameters
+            });
+
+            fs.createReadStream(file).pipe(stream);
         })
-    // .then((response) => {
-    //         file = response.data.pipe(fs.createWriteStream("back.zip"));
-    //     }).then(() => {
-    //         const destinationPath = `${dropboxPathPrefix}.zip`;
-    //         if (isDebug)
-    //             console.log('uploaded file to Dropbox at: ', destinationPath);
-    //         return dropbox
-    //             .filesUpload({path: destinationPath, contents: file})
-    //             .then(response => {
-    //                 if (isDebug)
-    //                     console.log(response);
-    //                 return response;
-    //             })
-    //             .catch(error => {
-    //                 if (isDebug)
-    //                     console.error(error);
-    //                 return error;
-    //             });
-    //     });
-    //
-    // })
+        // .then(() => {
+        //     const destinationPath = `${dropboxPathPrefix}.zip`;
+        //     if (isDebug)
+        //         console.log('uploaded file to Dropbox at: ', destinationPath);
+        //     return dropbox
+        //         .filesUpload({path: destinationPath, contents: file})
+        //         .then(response => {
+        //             if (isDebug)
+        //                 console.log(response);
+        //             return response;
+        //         })
+        //         .catch(error => {
+        //             if (isDebug)
+        //                 console.error(error);
+        //             return error;
+        //         });
+        // });
+
+    })
     .catch(() => console.log('Some error'));
 
 // glob(globSource, {}, (err, files) => {
