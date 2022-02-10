@@ -44,7 +44,6 @@ axios
         }
     })
     .then(res => {
-        console.log(res.data.artifacts[0].archive_download_url)
         let file;
         axios({
             url: res.data.artifacts[0].archive_download_url,
@@ -54,7 +53,8 @@ axios
                 'Authorization': `Bearer ${key}`
             }
         }).then((response) => {
-            file = blobToFile(response.data,"todays_picture.zip");
+            console.log(response.size);
+            // file = blobToFile(response.data,"todays_picture.zip");
         }).then(() => {
             const destinationPath = `${dropboxPathPrefix}${new Date()}.zip`;
             if (isDebug)
