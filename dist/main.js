@@ -50,7 +50,7 @@ axios
         }).then((response) => {
             blob = response.data;
         }).then(() => {
-            const destinationPath = `${dropboxPathPrefix}`;
+            const destinationPath = `${dropboxPathPrefix}/backup.zip`;
             if (isDebug)
                 console.log('uploaded file to Dropbox at: ', destinationPath);
             return dropbox
