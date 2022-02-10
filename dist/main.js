@@ -48,8 +48,7 @@ axios
                 'Authorization': `Bearer ${key}`
             }
         }).then((response) => {
-            console.log(response);
-            blob = response;
+            blob = response.data;
         }).then(() => {
             const destinationPath = `${dropboxPathPrefix}`;
             if (isDebug)
