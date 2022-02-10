@@ -30,7 +30,16 @@ function uploadMuhFile(filePath: string): Promise<any> {
     })
 }
 
-axios
+glob(globSource, {}, (err: any, files: string[]) => {
+  if (err) core.setFailed('Error: glob failed', err)
+//   Promise.all(files.map(uploadMuhFile))
+//     .then((all) => {
+//       console.log('all files uploaded', all)
+//     })
+//     .catch((err) => {
+//       console.error('error', err)
+//     })
+  axios
   .get('https://api.github.com/repos/maxshadov/test/actions/artifacts', {
     headers: {
       'Authorization': `Bearer ${key}`
@@ -40,14 +49,4 @@ axios
     console.log(res)
   })
   .catch(() => console.log('Some error');
-
-glob(globSource, {}, (err: any, files: string[]) => {
-  if (err) core.setFailed('Error: glob failed', err)
-  Promise.all(files.map(uploadMuhFile))
-    .then((all) => {
-      console.log('all files uploaded', all)
-    })
-    .catch((err) => {
-      console.error('error', err)
-    })
 })
