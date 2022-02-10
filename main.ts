@@ -14,7 +14,7 @@ const dropbox = new Dropbox({accessToken, fetch: fetch2})
 console.log(path);
 function uploadMuhFile(filePath: string): Promise<any> {
   const file = fs.readFileSync(filePath)
-  const destinationPath = `${dropboxPathPrefix}${filePath}`
+  const destinationPath = `${dropboxPathPrefix}/${filePath}`
   if (isDebug) console.log('uploaded file to Dropbox at: ', destinationPath)
   return dropbox
     .filesUpload({path: destinationPath, contents: file})
