@@ -3,10 +3,10 @@ description: 'This action will handle the deployment process of your project to 
 author: 'aTable'
 branding:
   icon: 'upload-cloud'
-  color: 'black'
+  color: green
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'dist/main.js'
 inputs:
   DROPBOX_ACCESS_TOKEN:
     description: 'Value should be a secret that is set in your repository settings'
