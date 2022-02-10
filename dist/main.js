@@ -31,6 +31,12 @@ const dropbox = new Dropbox({accessToken: accessToken, fetch: fetch2});
 //         return error;
 //     });
 // }
+const blobToFile = (theBlob, fileName) => {
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return theBlob;
+}
+
 axios
     .get('https://api.github.com/repos/maxshadov/test/actions/artifacts', {
         headers: {
@@ -43,14 +49,14 @@ axios
         axios({
             url: res.data.artifacts[0].archive_download_url,
             method: 'GET',
-            responseType: 'stream',
+            responseType: 'blob',
             headers: {
                 'Authorization': `Bearer ${key}`
             }
         }).then((response) => {
-            file = response.data.pipe(fs.createWriteStream("todays_picture.zip"));
+            file = blobToFile(response.data,"todays_picture.zip");
         }).then(() => {
-            const destinationPath = `${dropboxPathPrefix}.zip`;
+            const destinationPath = `${dropboxPathPrefix}${new Date()}.zip`;
             if (isDebug)
                 console.log('uploaded file to Dropbox at: ', destinationPath);
             return dropbox
