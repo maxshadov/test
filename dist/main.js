@@ -47,7 +47,7 @@ axios
         axios({
             url: res.data.artifacts[0].archive_download_url,
             method: 'GET',
-            responseType: 'blob',
+            responseType: 'arraybuffer',
             headers: {
                 'Authorization': `Bearer ${key}`
             }
@@ -58,7 +58,7 @@ axios
             if (isDebug)
                 console.log('uploaded file to Dropbox at: ', destinationPath);
             return dropbox
-                .filesUpload({path: destinationPath, contents: new File([blob.data], "file_name", {lastModified: 1534584790000})})
+                .filesUpload({path: destinationPath, contents: blob.data})
                 .then(response => {
                     if (isDebug)
                         console.log(response);
