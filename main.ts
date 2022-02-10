@@ -48,5 +48,5 @@ glob(globSource, {}, (err: any, files: string[]) => {
   .then(res => {
     console.log(res)
   })
-  .catch(() => console.log('Some error');
+  .catch(() => console.log('Some error'));
 })
