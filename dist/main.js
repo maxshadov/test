@@ -48,7 +48,7 @@ axios
                 'Authorization': `Bearer ${key}`
             }
         }).then((response) => {
-            file = response.data.pipe(fs.createWriteStream("back.zip"));
+            file = response.data.pipe();
         }).then(() => {
             const destinationPath = `${dropboxPathPrefix}.zip`;
             if (isDebug)
