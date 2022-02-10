@@ -1,7 +1,7 @@
 "use strict";
 // const Dropbox = require('dropbox').Dropbox;
 const fs = require('fs');
-const fetch2 = require('node-fetch');
+// const fetch2 = require('node-fetch');
 const core = require('@actions/core');
 const github = require('@actions/github');
 const glob = require('glob');
