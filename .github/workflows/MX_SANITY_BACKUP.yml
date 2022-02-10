@@ -1,4 +1,4 @@
-name: Backup Routine
+/name: Backup Routine
 on:
   repository_dispatch:
     types: backup
@@ -29,5 +29,5 @@ jobs:
         with:
           DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
           DROPBOX_DESTINATION_PATH_PREFIX: "/backups_sanity"
-          GLOB: /
+          GLOB: /test/**/*.md
           DEBUG: true   
