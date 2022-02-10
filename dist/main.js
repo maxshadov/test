@@ -52,9 +52,10 @@ axios
                 'Authorization': `Bearer ${key}`
             }
         }).then(blob => {
+            console.log(new Blob([blob.data]));
             const date = new Date();
             const suff = `${date.getDate()}-${date.getMonth()}`
-            const destinationPath = `Sanity/${dropboxPathPrefix}-${suff}.zip`;
+            const destinationPath = `/Sanity${dropboxPathPrefix}-${suff}.zip`;
             if (isDebug)
                 console.log('uploaded file to Dropbox at: ', destinationPath);
             return dropbox
