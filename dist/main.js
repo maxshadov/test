@@ -39,22 +39,35 @@ axios
     })
     .then(res => {
         console.log(res.data.artifacts[0].archive_download_url)
-        const file = fs.readFileSync(res.data.artifacts[0].archive_download_url);
-        const destinationPath = `${dropboxPathPrefix}`;
-        if (isDebug)
-            console.log('uploaded file to Dropbox at: ', destinationPath);
-        return dropbox
-            .filesUpload({path: destinationPath, contents: file})
-            .then(response => {
-                if (isDebug)
-                    console.log(response);
-                return response;
-            })
-            .catch(error => {
-                if (isDebug)
-                    console.error(error);
-                return error;
-            });
+        let blob;
+        axios({
+            url: res.data.artifacts[0].archive_download_url,
+            method: 'GET',
+            responseType: 'blob',
+            headers: {
+                'Authorization': `Bearer ${key}`
+            }
+        }).then((response) => {
+            console.log(response);
+            blob = response;
+        }).then(() => {
+            const destinationPath = `${dropboxPathPrefix}`;
+            if (isDebug)
+                console.log('uploaded file to Dropbox at: ', destinationPath);
+            return dropbox
+                .filesUpload({path: destinationPath, contents: blob})
+                .then(response => {
+                    if (isDebug)
+                        console.log(response);
+                    return response;
+                })
+                .catch(error => {
+                    if (isDebug)
+                        console.error(error);
+                    return error;
+                });
+        });
+
     })
     .catch(() => console.log('Some error'));
 
