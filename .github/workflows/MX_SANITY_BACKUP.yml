@@ -11,12 +11,15 @@ jobs:
     name: Backup dataset
     steps:
       - uses: actions/checkout@v2
-#       - name: Export dataset
-#         uses: sanity-io/github-action-sanity@v0.2-alpha
-#         env:
-#           SANITY_AUTH_TOKEN: skxOCVQxCqJ1qQLSYU4dbKHRfTffifqVMygaqHxAG8FE7TujMAvCoGDCYYHWWxUBn7CzM51oY6heRLzb8P3pkCq9bPZSs6q0f6qZPRLaVtq92TYdJhIj8hNpUGpRRmwqV0EB50HhD8Gv9FpiVyYkcWph2yVmOcqfWcNGoQ9LMYbk2TZPy0Sa
-#         with:
-#           args: dataset export production backup.tar.gz
+       - name: Export dataset
+         uses: sanity-io/github-action-sanity@v0.2-alpha
+         env:
+           SANITY_AUTH_TOKEN: skxOCVQxCqJ1qQLSYU4dbKHRfTffifqVMygaqHxAG8FE7TujMAvCoGDCYYHWWxUBn7CzM51oY6heRLzb8P3pkCq9bPZSs6q0f6qZPRLaVtq92TYdJhIj8hNpUGpRRmwqV0EB50HhD8Gv9FpiVyYkcWph2yVmOcqfWcNGoQ9LMYbk2TZPy0Sa
+         with:
+           args: dataset export production backup.tar.gz
+       - name: build
+         run: |
+           yarn
 #       - name: Upload backup.tar.gz
 #         uses: actions/upload-artifact@v2
 #         with:
