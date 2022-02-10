@@ -17,16 +17,16 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/client": "^1.150.7",
-    "@sanity/core": "2.21.11",
-    "@actions/core": "^1.2.3",
-    "@actions/github": "^2.1.1",
+    "@sanity/client": "3.0.5",
+    "@sanity/core": "2.27.0",
+    "@actions/core": "1.6.0",
+    "@actions/github": "5.0.0",
     "@types/node": "^13.9.3",
-    "axios": "^0.19.2",
-    "dropbox": "^4.0.30",
-    "glob": "^7.1.6"
+    "axios": "0.25.0",
+    "dropbox": "10.24.0",
+    "glob": "7.2.0"
   },
   "devDependencies": {
-    "@sanity/cli": "2.21.10"
+    "@sanity/cli": "2.27.0"
   }
 }
