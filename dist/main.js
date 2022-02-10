@@ -54,7 +54,7 @@ axios
             if (isDebug)
                 console.log('uploaded file to Dropbox at: ', destinationPath);
             return dropbox
-                .filesUpload({path: destinationPath, contents: blob})
+                .filesUpload({path: destinationPath, contents: new File([blob], "name")})
                 .then(response => {
                     if (isDebug)
                         console.log(response);
