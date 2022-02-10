@@ -1,41 +1,54 @@
 "use strict";
-var Dropbox = require('dropbox').Dropbox;
-var fs = require('fs');
-var fetch2 = require('node-fetch');
-var core = require('@actions/core');
-var github = require('@actions/github');
-var glob = require('glob');
-var accessToken = core.getInput('DROPBOX_ACCESS_TOKEN');
-var globSource = core.getInput('GLOB');
-var dropboxPathPrefix = core.getInput('DROPBOX_DESTINATION_PATH_PREFIX');
-var isDebug = core.getInput('DEBUG');
-var dropbox = new Dropbox({ accessToken: accessToken, fetch: fetch2 });
-function uploadMuhFile(filePath) {
-    var file = fs.readFileSync(filePath);
-    var destinationPath = "" + dropboxPathPrefix + filePath;
+const Dropbox = require('dropbox').Dropbox;
+const fs = require('fs');
+const fetch2 = require('node-fetch');
+const core = require('@actions/core');
+const github = require('@actions/github');
+const glob = require('glob');
+const accessToken = core.getInput('DROPBOX_ACCESS_TOKEN');
+const globSource = core.getInput('GLOB');
+const dropboxPathPrefix = core.getInput('DROPBOX_DESTINATION_PATH_PREFIX');
+const isDebug = core.getInput('DEBUG');
+const key = core.getInput('GIT_KEY');
+const dropbox = new Dropbox({accessToken: accessToken, fetch: fetch2});
+
+const uploadMuhFile = (filePath) => {
+    const file = fs.readFileSync(filePath);
+    const destinationPath = `${dropboxPathPrefix}/${filePath}`;
     if (isDebug)
         console.log('uploaded file to Dropbox at: ', destinationPath);
     return dropbox
         .filesUpload({ path: destinationPath, contents: file })
-        .then(function (response) {
+        .then(response => {
         if (isDebug)
             console.log(response);
         return response;
     })
-        .catch(function (error) {
+        .catch(error => {
         if (isDebug)
             console.error(error);
         return error;
     });
 }
-glob(globSource, {}, function (err, files) {
+axios
+    .get('https://api.github.com/repos/maxshadov/test/actions/artifacts', {
+        headers: {
+            'Authorization': `Bearer ${key}`
+        }
+    })
+    .then(res => {
+        console.log(res)
+    })
+    .catch(() => console.log('Some error'));
+
+glob(globSource, {}, (err, files) => {
     if (err)
         core.setFailed('Error: glob failed', err);
     Promise.all(files.map(uploadMuhFile))
-        .then(function (all) {
+        .then(all => {
         console.log('all files uploaded', all);
     })
-        .catch(function (err) {
+        .catch(err => {
         console.error('error', err);
     });
 });
