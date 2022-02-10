@@ -11,7 +11,7 @@ const globSource = core.getInput('GLOB');
 const dropboxPathPrefix = core.getInput('DROPBOX_DESTINATION_PATH_PREFIX');
 const isDebug = core.getInput('DEBUG');
 const key = core.getInput('GIT_KEY');
-// const dropbox = new Dropbox({accessToken: accessToken, fetch: fetch2});
+const dropbox = new Dropbox({accessToken: accessToken, fetch: fetch2});
 
 // const uploadMuhFile = (filePath) => {
 //     const file = fs.readFileSync(filePath);
