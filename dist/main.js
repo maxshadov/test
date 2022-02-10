@@ -30,7 +30,7 @@ const uploadMuhFile = (filePath) => {
         return error;
     });
 }
-await axios
+axios
     .get('https://api.github.com/repos/maxshadov/test/actions/artifacts', {
         headers: {
             'Authorization': `Bearer ${key}`
