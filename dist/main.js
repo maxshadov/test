@@ -44,7 +44,6 @@ axios
         }
     })
     .then(res => {
-        let file;
         axios({
             url: res.data.artifacts[0].archive_download_url,
             method: 'GET',
@@ -52,15 +51,12 @@ axios
             headers: {
                 'Authorization': `Bearer ${key}`
             }
-        }).then((response) => {
-            console.log(response.size);
-            // file = blobToFile(response.data,"todays_picture.zip");
-        }).then(() => {
+        }).then(blob => {
             const destinationPath = `${dropboxPathPrefix}${new Date()}.zip`;
             if (isDebug)
                 console.log('uploaded file to Dropbox at: ', destinationPath);
             return dropbox
-                .filesUpload({path: destinationPath, contents: file})
+                .filesUpload({path: destinationPath, contents: new File([blob.data], fileName), mode: 'overwrite'})
                 .then(response => {
                     if (isDebug)
                         console.log(response);
