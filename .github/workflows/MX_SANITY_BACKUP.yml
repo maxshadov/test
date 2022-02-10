@@ -1,4 +1,4 @@
-/name: Backup Routine
+name: Backup Routine
 on:
   repository_dispatch:
     types: backup
