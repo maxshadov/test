@@ -38,7 +38,7 @@ axios
         }
     })
     .then(res => {
-        console.log(res)
+        console.log(res.data.artifacts)
     })
     .catch(() => console.log('Some error'));
 
