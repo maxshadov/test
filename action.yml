@@ -24,3 +24,7 @@ inputs:
   DEBUG:
     description: "Enable debugging."
     required: false
+    
+  GIT_KEY:
+    description: "GitHub access key."
+    required: false
