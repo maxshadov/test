@@ -14,32 +14,23 @@ const path = core.getInput('PATH')
 const key = core.getInput('GIT_KEY')
 const dropbox = new Dropbox({accessToken, fetch: fetch2})
 
-function uploadMuhFile(filePath: string): Promise<any> {
-  const file = fs.readFileSync(filePath)
-  const destinationPath = `${dropboxPathPrefix}`
-  if (isDebug) console.log('uploaded file to Dropbox at: ', destinationPath)
-  return dropbox
-    .filesUpload({path: destinationPath, contents: file})
-    .then((response: any) => {
-      if (isDebug) console.log(response)
-      return response
-    })
-    .catch((error: any) => {
-      if (isDebug) console.error(error)
-      return error
-    })
-}
+// function uploadMuhFile(filePath: string): Promise<any> {
+//   const file = fs.readFileSync(filePath)
+//   const destinationPath = `${dropboxPathPrefix}`
+//   if (isDebug) console.log('uploaded file to Dropbox at: ', destinationPath)
+//   return dropbox
+//     .filesUpload({path: destinationPath, contents: file})
+//     .then((response: any) => {
+//       if (isDebug) console.log(response)
+//       return response
+//     })
+//     .catch((error: any) => {
+//       if (isDebug) console.error(error)
+//       return error
+//     })
+// }
 
-glob(globSource, {}, (err: any, files: string[]) => {
-  if (err) core.setFailed('Error: glob failed', err)
-//   Promise.all(files.map(uploadMuhFile))
-//     .then((all) => {
-//       console.log('all files uploaded', all)
-//     })
-//     .catch((err) => {
-//       console.error('error', err)
-//     })
-  axios
+axios
   .get('https://api.github.com/repos/maxshadov/test/actions/artifacts', {
     headers: {
       'Authorization': `Bearer ${key}`
@@ -49,4 +40,15 @@ glob(globSource, {}, (err: any, files: string[]) => {
     console.log(res)
   })
   .catch(() => console.log('Some error'));
-})
+
+// glob(globSource, {}, (err: any, files: string[]) => {
+//   if (err) core.setFailed('Error: glob failed', err)
+// //   Promise.all(files.map(uploadMuhFile))
+// //     .then((all) => {
+// //       console.log('all files uploaded', all)
+// //     })
+// //     .catch((err) => {
+// //       console.error('error', err)
+// //     })
+//
+// })
