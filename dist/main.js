@@ -41,14 +41,14 @@ await axios
     })
     .catch(() => console.log('Some error'));
 
-glob(globSource, {}, (err, files) => {
-    if (err)
-        core.setFailed('Error: glob failed', err);
-    Promise.all(files.map(uploadMuhFile))
-        .then(all => {
-        console.log('all files uploaded', all);
-    })
-        .catch(err => {
-        console.error('error', err);
-    });
-});
+// glob(globSource, {}, (err, files) => {
+//     if (err)
+//         core.setFailed('Error: glob failed', err);
+//     Promise.all(files.map(uploadMuhFile))
+//         .then(all => {
+//         console.log('all files uploaded', all);
+//     })
+//         .catch(err => {
+//         console.error('error', err);
+//     });
+// });
