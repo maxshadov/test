@@ -27,6 +27,8 @@ jobs:
 
   upload:
     runs-on: ubuntu-latest
+    name: Upload to Dropbox
+    needs: [backup-dataset]
     steps:
       - uses: actions/checkout@v2
 #      - name: build
