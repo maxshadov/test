@@ -14,7 +14,7 @@ jobs:
       - name: Export dataset
         uses: sanity-io/github-action-sanity@v0.2-alpha
         env:
-          SANITY_AUTH_TOKEN: skxOCVQxCqJ1qQLSYU4dbKHRfTffifqVMygaqHxAG8FE7TujMAvCoGDCYYHWWxUBn7CzM51oY6heRLzb8P3pkCq9bPZSs6q0f6qZPRLaVtq92TYdJhIj8hNpUGpRRmwqV0EB50HhD8Gv9FpiVyYkcWph2yVmOcqfWcNGoQ9LMYbk2TZPy0Sa
+          SANITY_AUTH_TOKEN: skn0WP3ITuMTlqEgrfhXctwPsJJZH8ItBgbzCJVfD26LVJWERGr1hVTGUz8BKF8tTVBkb0YroehBESKKlQ2m5lPiK7eQqUtZojjxvvprRDl9QEsO77PKD88xzfIIVgfgON1hFd03n53o9wRm4OrrDpvvy26EqJmqGhW4UlNvKtR9UWFwuqHo
         with:
           args: dataset export production backup.tar.gz
       - name: Upload backup.tar.gz
