@@ -11,8 +11,6 @@ jobs:
     name: Backup dataset
     steps:
       - uses: actions/checkout@v2
-      - name: build
-        run: yarn
       - name: Export dataset
         uses: sanity-io/github-action-sanity@v0.2-alpha
         env:
@@ -26,10 +24,3 @@ jobs:
           path: backup.tar.gz
           # Fails the workflow if no files are found; defaults to 'warn'
           if-no-files-found: error
-      - name: Upload backup to Dropbox
-        uses: ./
-        with:
-          DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
-          DROPBOX_DESTINATION_PATH_PREFIX: "ES-MX"
-          DEBUG: true
-          GIT_KEY: ${{ secrets.GIT_KEY }}

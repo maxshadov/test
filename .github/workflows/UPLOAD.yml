@@ -1,0 +1,23 @@
+name: Upload to Dropbox
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: ["Backup Routine"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: yarn
+      - name: Upload backup to Dropbox
+        uses: ./
+        with:
+          DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+          DROPBOX_DESTINATION_PATH_PREFIX: "ES-MX"
+          DEBUG: true
+          GIT_KEY: ${{ secrets.GIT_KEY }}
