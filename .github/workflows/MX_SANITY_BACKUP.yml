@@ -31,8 +31,8 @@ jobs:
     needs: [backup-dataset]
     steps:
       - uses: actions/checkout@v2
-#      - name: build
-#        run: yarn
+      - name: build
+        run: yarn
       - name: Upload backup to Dropbox
         uses: ./
         with:
